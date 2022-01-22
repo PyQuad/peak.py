@@ -1,4 +1,3 @@
-#JUST A COMMENT
 from PyQt5.QtWidgets import QApplication
 import sys
 from window import PeakWindow

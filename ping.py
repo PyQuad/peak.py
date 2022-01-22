@@ -11,3 +11,5 @@ async def ping_url(url, session):
         return {"error": "InvalidURL"}
     except ClientConnectorError:
         return {"error": "ClientConnectorError"}
+    except TypeError:
+        return {"error":"NoInput" }
