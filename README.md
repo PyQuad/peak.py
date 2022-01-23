@@ -4,8 +4,6 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -202,8 +200,6 @@ Project Link: [https://github.com/PyQuad/peak.py](https://github.com/your_userna
 [stars-url]: https://github.com/PyQuad/peak.py/stargazers
 [issues-shield]: https://img.shields.io/github/issues/PyQuad/peak.py?style=for-the-badge
 [issues-url]: https://github.com/PyQuad/peak.pyissues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/PyQuad/peak.py/
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/
 [product-screenshot]: images/screenshot.png
