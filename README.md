@@ -28,6 +28,15 @@
 </div>
 
 
+
+<div align="center">
+  <a href="https://github.com/PyQuad/peak.py">
+    <img src="https://raw.githubusercontent.com/PyQuad/peak.py/main/assets/peakuiexample.jpeg" alt="Logo">
+  </a> 
+</div>
+
+
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
