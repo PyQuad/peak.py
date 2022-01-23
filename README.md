@@ -64,8 +64,8 @@
 There are many great status checkers available over the web, but we created this open source API Powered project to make it cross-platform and accessible to all for free.
 
 Here's why:
-* Regularly check for your server and website availability and uptime. A
-* project that solves a problem and helps others
+* Regularly check for your server and website availability and uptime.
+* A project that solves a problem and helps others
 
 Of course, no one app/project will serve all functionalities since your needs may be different. So we'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this project!
 
