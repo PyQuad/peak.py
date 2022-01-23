@@ -1,5 +1,4 @@
 from PyQt5.QtWidgets import QMainWindow
-
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 500
 

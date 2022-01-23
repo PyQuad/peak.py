@@ -5,6 +5,9 @@ from sanic import Sanic, json
 from aiohttp import ClientSession
 # Imported ping to play with websites
 from ping import ping_url
+# Importing Windows Button Click Instance
+# from window1 import *
+
 """-----------Importing Dependencies End---------------"""
 
 """-------------Sanic App Start----------"""
@@ -36,10 +39,11 @@ async def index(request):
 # Creating /url parameter
 async def ping(request):
     url = request.args.get("url")
-    result = await ping_url(url, app.ctx.aiohttp_session)
+    result = await ping_url(a, app.ctx.aiohttp_session)
     return json(result)
-"""-----------Sanic App End-----------"""
 
+
+"""-----------Sanic App End-----------"""
 # Let's run
 if __name__ == "__main__":
     app.run()
