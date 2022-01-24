@@ -197,9 +197,11 @@ Project Link: [https://github.com/PyQuad/peak.py](https://github.com/your_userna
 
 <p align="right">(<a href="#top">back to top</a>)</p> --->
 
+## Stargazers over time
 
+[![Stargazers over time](https://starchart.cc/PyQuad/peak.py.svg)](https://starchart.cc/PyQuad/peak.py)
 
-<!-- MARKDOWN LINKS & IMAGES -->
+<!-- MARKDOWN LINKS & IMAGES --
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/PyQuad/peak.py?color=green&style=for-the-badge
 [contributors-url]: https://github.com/PyQuad/peak.py/graphs/contributors
