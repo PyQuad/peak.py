@@ -1,16 +1,16 @@
-from PyQt5.QtWidgets import QApplication
 import sys
+
+from tkinter import Tk
+
 from window import PeakWindow
+from asset_manager import AssetManager
 
 if __name__ == "__main__":
-    # Create a QApplication
-    app = QApplication(sys.argv)
+    # Load the asset manager
+    asset_man = AssetManager()
 
-    # Create a window
-    window = PeakWindow()
+    # Create a Tkinter application
+    root = PeakWindow(asset_man)
 
-    # Show window
-    window.show()
-
-    # Handle process exit
-    sys.exit(app.exec_())
+    # Run application
+    root.run()
