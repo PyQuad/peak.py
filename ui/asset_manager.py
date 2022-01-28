@@ -12,7 +12,7 @@ class AssetType(Enum):
 
 class AssetManager:
     def __init__(self):
-        self.root_path = Path(__file__).absolute().parent
+        self.root_path = Path(__file__).absolute().parent.parent
         self.assets_path = Path(os.path.join(self.root_path, "assets"))
 
     def get_path(self, asset_type: AssetType):

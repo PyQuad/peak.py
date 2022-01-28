@@ -7,14 +7,17 @@ from sanic import Sanic, json
 from aiohttp import ClientSession
 
 from tortoise.contrib.sanic import register_tortoise
-from models import WebLogs
 
-logging.basicConfig(level=logging.DEBUG)
+from tortoise_config import TORTOISE_ORM
+from models import WebLogs
 
 # Imported ping to play with websites
 from ping import ping_url
 
-"""-----------Importing Dependencies End---------------"""
+# Setup logging
+logging.basicConfig(level=logging.DEBUG)
+
+"-----------Importing Dependencies End---------------"""
 
 """-------------Sanic App Start----------"""
 # Created Sanic Application

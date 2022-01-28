@@ -1,9 +1,5 @@
-import sys
-
-from tkinter import Tk
-
 from window import PeakWindow
-from asset_manager import AssetManager
+from ui.asset_manager import AssetManager
 
 if __name__ == "__main__":
     # Load the asset manager

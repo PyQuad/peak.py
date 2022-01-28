@@ -1,6 +1,6 @@
 from tkinter import Tk, Canvas, PhotoImage, Button, Entry, StringVar
 
-from asset_manager import AssetType
+from ui.asset_manager import AssetType
 
 WINDOW_WIDTH = 1015
 WINDOW_HEIGHT = 717
@@ -139,4 +139,3 @@ class PeakWindow(Tk):
     def run(self):
         self.widgets()
         self.mainloop()
-        # test
