@@ -1,11 +1,23 @@
 """------------Importing Dependencies Start-----------"""
+import logging
+
 # Imported Sanic, Asynchronous web frameworks
 from sanic import Sanic, json
 # Imported AIOHttp, Asynchronous HTTP Client
 from aiohttp import ClientSession
+
+from tortoise.contrib.sanic import register_tortoise
+
+from tortoise_config import TORTOISE_ORM
+from models import WebLogs
+
 # Imported ping to play with websites
 from ping import ping_url
-"""-----------Importing Dependencies End---------------"""
+
+# Setup logging
+logging.basicConfig(level=logging.DEBUG)
+
+"-----------Importing Dependencies End---------------"""
 
 """-------------Sanic App Start----------"""
 # Created Sanic Application
@@ -38,7 +50,14 @@ async def ping(request):
     url = request.args.get("url")
     result = await ping_url(url, app.ctx.aiohttp_session)
     return json(result)
+
 """-----------Sanic App End-----------"""
+
+register_tortoise(
+    app,
+    config=TORTOISE_ORM,
+    generate_schemas=True
+)
 
 # Let's run
 if __name__ == "__main__":
