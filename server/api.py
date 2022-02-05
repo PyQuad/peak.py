@@ -9,7 +9,7 @@ from aiohttp import ClientSession
 from tortoise.contrib.sanic import register_tortoise
 
 from tortoise_config import TORTOISE_ORM
-from models import WebLogs
+from models import WebLog
 
 # Imported ping to play with websites
 from ping import ping_url
