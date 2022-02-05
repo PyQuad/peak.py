@@ -21,16 +21,15 @@ async def on_request_end(session, trace_config_ctx, params):
     print("Request took {}".format(current_ping))
 
 
-trace_config = aiohttp.TraceConfig()
-trace_config.on_request_start.append(on_request_start)
-trace_config.on_request_end.append(on_request_end)
 
 
 # Outputs
 async def ping_url(url, session):
     resp = None
     try:
-        resp = await session.get(url, trace_configs=[trace_config])
+        resp = await session.get("https://saharaa.in")
+        #rp = await resp.read()
+        #print(rp)
 
         # Return success response
         return {"message": {"status": resp.status, "reason": resp.reason}}
@@ -42,7 +41,8 @@ async def ping_url(url, session):
         return {"error": "InvalidURL"}
     except ClientConnectorError:
         return {"error": "ClientConnectorError"}
-    except TypeError:
+    except TypeError as e:
+        print(e)
         return {"error": "NoInput"}
     finally:
         if resp:
