@@ -1,7 +1,7 @@
 """------------Importing Dependencies Start-----------"""
 import logging
-
 # Imported Sanic, Asynchronous web frameworks
+import aiohttp
 from sanic import Sanic, json
 # Imported AIOHttp, Asynchronous HTTP Client
 from aiohttp import ClientSession
@@ -9,10 +9,10 @@ from aiohttp import ClientSession
 from tortoise.contrib.sanic import register_tortoise
 
 from tortoise_config import TORTOISE_ORM
-from models import WebLogs
+from models import WebLog
 
 # Imported ping to play with websites
-from ping import ping_url
+from ping import ping_url, on_request_start, on_request_end
 
 # Setup logging
 logging.basicConfig(level=logging.DEBUG)
@@ -27,7 +27,10 @@ app = Sanic("PeakAPI")
 # Created a client session
 @app.listener('before_server_start')
 async def init(app, loop):
-    app.ctx.aiohttp_session = ClientSession(loop=loop)
+    trace_config = aiohttp.TraceConfig()
+    trace_config.on_request_start.append(on_request_start)
+    trace_config.on_request_end.append(on_request_end)
+    app.ctx.aiohttp_session = ClientSession(loop=loop, trace_configs=[trace_config])
 
 
 # Listener to close session
