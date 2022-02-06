@@ -90,7 +90,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * [Python](https://python.org/)
 * [Sanic Framework](https://sanic.dev/en/)
 * [AIOHTTP](https://docs.aiohttp.org/en/stable/)
-* [PyQt5](https://pypi.org/project/PyQt5/)
+* [Tkinter](https://docs.python.org/3/library/tkinter.html)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -149,7 +149,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] The project idea
 - [x] Structure content
 - [x] Build Main Code And API
-- [ ] Add Graph And Logging Support
+- [x] Add Graph And Logging Support
 - [ ] Multi-language Support
     - [ ] Hindi
     - [ ] Mandarin Chinese
