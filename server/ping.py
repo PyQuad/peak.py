@@ -16,14 +16,14 @@ class Pinger:
         trace_config_ctx.start = asyncio.get_event_loop().time()
 
     async def on_request_end(self, session, trace_config_ctx, params):
-        self.current_ping = asyncio.get_event_loop().time() - trace_config_ctx.start
+        self.current_ping = (asyncio.get_event_loop().time() - trace_config_ctx.start) * 100
         print("Request took {}".format(self.current_ping))
 
     async def ping_url(self, url, session):
         resp = None
         try:
             resp = await session.get(url)
-            await resp.read() # reading the contents is critical to the actual response times
+            #await resp.read() # reading the contents is critical to the actual response times
 
             # Return success response
             return {"message": {"status": resp.status, "reason": resp.reason, "ping": self.current_ping}}
