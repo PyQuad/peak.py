@@ -4,11 +4,19 @@ from pathlib import Path
 from enum import Enum
 
 class AssetType(Enum):
-    BACKGROUND = 1
-    STATUS_CARDS = 2
-    BUTTON_HOME = 3
-    BUTTON_SETTINGS = 4
-    ENTRY = 5
+    BACKGROUND_WHITE = 1
+    BACKGROUND = 2
+    ENTRY_BACKGROUND = 3
+    
+    BUTTON_HOME = 4
+    BUTTON_USER = 5
+    BUTTON_SETTINGS = 6
+    BUTTON_GO = 7
+    
+    INSTAGRAM_CARD = 8
+    WHATSAPP_CARD = 9
+    FACEBOOK_CARD = 10
+    TWITTER_CARD = 11
 
 class AssetManager:
     def __init__(self):
@@ -17,28 +25,64 @@ class AssetManager:
 
     def get_path(self, asset_type: AssetType):
         match asset_type:
+            case AssetType.BACKGROUND_WHITE:
+                return os.path.join(
+                    self.assets_path,
+                    "bg_white.png"
+                )
+                
             case AssetType.BACKGROUND:
                 return os.path.join(
                     self.assets_path,
-                    "background.png"
+                    "bg.png"
                 )
-            case AssetType.STATUS_CARDS:
+            
+            case AssetType.ENTRY_BACKGROUND:
                 return os.path.join(
                     self.assets_path,
-                    "status_cards.png"
+                    "entry_bg.png"
                 )
+            
             case AssetType.BUTTON_HOME:
                 return os.path.join(
                     self.assets_path,
-                    "button_home.png"
+                    "home_bt.png"
+                )
+            case AssetType.BUTTON_USER:
+                return os.path.join(
+                    self.assets_path,
+                    "user_bt.png"
                 )
             case AssetType.BUTTON_SETTINGS:
                 return os.path.join(
                     self.assets_path,
-                    "button_settings.png"
+                    "settings_bt.png"
                 )
-            case AssetType.ENTRY:
+            case AssetType.BUTTON_GO:
                 return os.path.join(
                     self.assets_path,
-                    "entry.png"
+                    "bt_go.png"
+                )
+            case AssetType.INSTAGRAM_CARD:
+                return os.path.join(
+                    self.assets_path,
+                    "instagram_card.png"
+                )
+                
+            case AssetType.WHATSAPP_CARD:
+                return os.path.join(
+                    self.assets_path,
+                    "whatsapp_card.png"
+                )
+            
+            case AssetType.FACEBOOK_CARD:
+                return os.path.join(
+                    self.assets_path,
+                    "facebook_card.png"
+                )
+            
+            case AssetType.TWITTER_CARD:
+                return os.path.join(
+                    self.assets_path,
+                    "twitter_card.png"
                 )
