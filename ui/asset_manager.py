@@ -61,7 +61,7 @@ class AssetManager:
             case AssetType.BUTTON_GO:
                 return os.path.join(
                     self.assets_path,
-                    "bt_go.png"
+                    "go_bt.png"
                 )
             case AssetType.INSTAGRAM_CARD:
                 return os.path.join(
