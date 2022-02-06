@@ -179,7 +179,7 @@ class PeakWindow(Tk):
         self.button_go = Button(
         	image=self.button_go_image,
             borderwidth=0,
-            highlightwidth=0,
+            highlightthickness=0,
             command=lambda: print("go button clicked"),
             relief="flat"
         )
