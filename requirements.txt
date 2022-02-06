@@ -1,0 +1,9 @@
+# Server
+sanic==21.12.1
+aiohttp==3.8.1
+tortoise-orm[aiomysql]==0.18.0
+python-dotenv==0.19.2
+aerich==0.6.2 # dev dependency
+
+# Client
+# tkinter :p
