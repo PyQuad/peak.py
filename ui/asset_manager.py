@@ -11,11 +11,12 @@ class AssetType(Enum):
     BUTTON_HOME = 4
     BUTTON_USER = 5
     BUTTON_SETTINGS = 6
+    BUTTON_GO = 7
     
-    INSTAGRAM_CARD = 7
-    WHATSAPP_CARD = 8
-    FACEBOOK_CARD = 9
-    TWITTER_CARD = 10
+    INSTAGRAM_CARD = 8
+    WHATSAPP_CARD = 9
+    FACEBOOK_CARD = 10
+    TWITTER_CARD = 11
 
 class AssetManager:
     def __init__(self):
@@ -56,6 +57,11 @@ class AssetManager:
                 return os.path.join(
                     self.assets_path,
                     "settings_bt.png"
+                )
+            case AssetType.BUTTON_GO:
+                return os.path.join(
+                    self.assets_path,
+                    "bt_go.png"
                 )
             case AssetType.INSTAGRAM_CARD:
                 return os.path.join(
