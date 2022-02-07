@@ -25,7 +25,7 @@
     ·
     <a href="https://github.com/PyQuad/peak.py">Request Feature</a>
     .
-     <a href="https://peakpy.herokuapp.com">DIRECT API Link {SERVER 1} </a>
+     <a href="https://peakpy.herokuapp.com">API Link {SERVER 1} </a>
     .
      <a href="https://pyquad-peak-api.herokuapp.com">API Link {SERVER 2} </a>
 
