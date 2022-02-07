@@ -1,4 +1,4 @@
-<div id="top"></div>
+<div id="top" align="center"></div>
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -24,12 +24,18 @@
     <a href="https://github.com/PyQuad/peak.py">Report Bug</a>
     ·
     <a href="https://github.com/PyQuad/peak.py">Request Feature</a>
-    .
-     <a href="https://peakpy.herokuapp.com">API Link {SERVER 1} </a>
-    .
-     <a href="https://pyquad-peak-api.herokuapp.com">API Link {SERVER 2} </a>
 
   </p>
+</div>
+
+<div align="center">
+  <a href="https://peakpy.herokuapp.com">
+    <img src="https://github.com/PyQuad/peak.py/blob/main/assets/bt2.png" width="211", height="77" alt="API 1">
+  </a> 
+
+  <a href="https://pyquad-peak-api.herokuapp.com">
+    <img src="https://raw.githubusercontent.com/PyQuad/peak.py/main/assets/bt4.png" alt="API 2">
+  </a> 
 </div>
 
 
