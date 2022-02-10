@@ -5,6 +5,7 @@ from tkinter.font import Font
 
 from asset_manager import AssetType
 from network import ping_url
+from animation import start_animation
 
 WINDOW_WIDTH = 1015
 WINDOW_HEIGHT = 717
@@ -184,7 +185,7 @@ class PeakWindow(Tk):
         )
 
         self.instagram_card_label.place(
-        	x=137,
+        	x=157,
             y=545,
         )
         self.instagram_card_label.lift()
@@ -353,21 +354,7 @@ class PeakWindow(Tk):
             anchor="center"
         )
 
-    def create_canvas(self):
-        """Creates and draws on the canvas"""
-
-        # Create a canvas
-        self.canvas = Canvas(
-            self,
-            width=WINDOW_WIDTH,
-            height=WINDOW_HEIGHT,
-            bd=0,
-            bg=CANVAS_COLOR,
-            highlightthickness=0,
-            relief="ridge"
-        )
-        self.canvas.place(x=0, y=0) # place canvas at the starting point of 0, 0
-        
+    def add_background(self):
         # Draw background white
         self.bg_white_image = PhotoImage(file=self.asset_man.get_path(AssetType.BACKGROUND_WHITE))
         self.canvas.create_image(
@@ -383,12 +370,30 @@ class PeakWindow(Tk):
             358,
             image=self.bg_image
         )
-    
+
+    def create_canvas(self):
+        """Creates and draws on the canvas"""
+
+        # Create a canvas
+        self.canvas = Canvas(
+            self,
+            width=WINDOW_WIDTH,
+            height=WINDOW_HEIGHT,
+            bd=0,
+            bg=CANVAS_COLOR,
+            highlightthickness=0,
+            relief="ridge"
+        )
+        self.canvas.place(x=0, y=0) # place canvas at the starting point of 0, 0
+
+        # Pack the canvas
+        self.canvas.pack()
+            
     def after_widgets(self):
         """Runs after UI widgets are laid out successfully"""
 
         # Set cards text to loading at start
-        self.instagram_card_label_text.set("\n    Hold on. Calculating...")
+        self.instagram_card_label_text.set("\nHold on. Calculating...")
         self.whatsapp_card_label_text.set("\nHold on. Calculating...")
         self.facebook_card_label_text.set("\nHold on. Calculating...")
         self.twitter_card_label_text.set("\nHold on. Calculating...")
@@ -396,13 +401,13 @@ class PeakWindow(Tk):
     def widgets(self):
         """Add all the widgets here"""
 
-        self.create_canvas()
-        self.canvas.pack()
-
+        self.add_background()
         self.add_status_cards()
         self.add_entry()
         self.add_buttons()
         self.add_result_text()
+
+        self.after_widgets()
 
     def setup(self):
         """Setup the application"""
@@ -411,8 +416,15 @@ class PeakWindow(Tk):
 
     def run(self):
         self.setup()
-        self.widgets()
 
-        self.after(10, self.after_widgets)
+        self.create_canvas()
+
+        # Start animation
+        start_animation(
+            self.canvas,
+            WINDOW_WIDTH,
+            WINDOW_HEIGHT,
+            execute_after=self.widgets
+        )
 
         self.mainloop()
