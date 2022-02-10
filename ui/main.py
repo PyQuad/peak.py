@@ -1,5 +1,5 @@
 from window import PeakWindow
-from ui.asset_manager import AssetManager
+from asset_manager import AssetManager
 
 if __name__ == "__main__":
     # Load the asset manager

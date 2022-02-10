@@ -1,6 +1,7 @@
-from tkinter import Tk, Canvas, PhotoImage, Button, Entry, StringVar
+from tkinter import Tk, Canvas, PhotoImage, Button, Entry, StringVar, Label
 
-from ui.asset_manager import AssetType
+from asset_manager import AssetType
+from network import ping_url
 
 WINDOW_WIDTH = 1015
 WINDOW_HEIGHT = 717
@@ -29,9 +30,36 @@ class PeakWindow(Tk):
         # Set window size
         self.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}")
 
+        # Make the window non-resizable
+        self.resizable(False, False)
+
         # Set initial state
         self.canvas = None
         self.bg_image = None
+
+    def on_go_click(self):
+        """Handles on click event for go button"""
+
+        url = self.entry_text.get()
+        resp = ping_url(url)
+
+        result = None
+        error = None
+        try:
+            result = resp["message"]
+        except KeyError:
+            error = resp["error"]
+
+        if error:
+            self.result_text.set(error)
+            return
+
+        status = result["status"]
+        reason = result["reason"]
+        ping = round(result["ping"], 3)
+
+        to_show = f"Status: {status}\nReason: {reason}\nPing: {ping}"
+        self.result_text.set(to_show)
 
     def add_buttons(self):
         """Adds buttons"""
@@ -160,7 +188,7 @@ class PeakWindow(Tk):
 
         # Add entry
         self.entry_text = StringVar()
-        self.entry_text.set("saharaa.in")
+        self.entry_text.set("saharaa.in") # keep default
         self.entry = Entry(
             bd=0,
             bg=ENTRY_BG_COLOR,
@@ -180,7 +208,7 @@ class PeakWindow(Tk):
         	image=self.button_go_image,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("go button clicked"),
+            command=self.on_go_click,
             relief="flat"
         )
         self.button_go.place(
@@ -189,7 +217,19 @@ class PeakWindow(Tk):
             width=132,
             height=65
         )
-    
+   
+    def add_result_text(self):
+        self.result_text = StringVar()
+        self.result_label = Label(textvariable=self.result_text, bg="white")
+
+        self.result_label.configure(anchor="center")
+
+        self.result_label.place(
+            x=5 * (WINDOW_WIDTH // 10),
+            y=6.3 * (WINDOW_HEIGHT // 11),
+            anchor="center"
+        )
+
     def create_canvas(self):
         """Creates and draws on the canvas"""
 
@@ -230,6 +270,7 @@ class PeakWindow(Tk):
         self.add_status_cards()
         self.add_entry()
         self.add_buttons()
+        self.add_result_text()
 
     def setup(self):
         """Setup the application"""

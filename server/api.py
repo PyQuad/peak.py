@@ -61,7 +61,15 @@ async def index(request):
 async def ping(request):
     url = request.args.get("url")
     result = await app.ctx.pinger.ping_url(url, app.ctx.aiohttp_session)
+
     return json(result)
+
+@app.get("/get_logs")
+async def get_logs(request):
+    url = request.args.get("url")
+    result = await WebLog.filter(site_addr=url).values()
+
+    return json(result, default=str)
 
 
 """-----------Sanic App End-----------"""
