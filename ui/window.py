@@ -1,10 +1,15 @@
+import time
+
 from tkinter import Tk, Canvas, PhotoImage, Button, Entry, StringVar, Label
+from tkinter.font import Font
 
 from asset_manager import AssetType
 from network import ping_url
 
 WINDOW_WIDTH = 1015
 WINDOW_HEIGHT = 717
+
+POPULAR_POLL_INTERVAL = 10
 
 BACKGROUND_COLOR = "#ffffff"
 CANVAS_COLOR = "#ffffff"
@@ -33,9 +38,61 @@ class PeakWindow(Tk):
         # Make the window non-resizable
         self.resizable(False, False)
 
+        # Define popular urls
+        self.popular_urls = [
+            ("instagram", "https://instagram.com"),
+            ("whatsapp", "https://whatsapp.com"),
+            ("facebook", "https://facebook.com"),
+            ("twitter", "https://twitter.com")
+        ]
+
         # Set initial state
+        self.is_popular_loop_running = True
         self.canvas = None
         self.bg_image = None
+
+    def terminate_popular_loop(self):
+        self.is_popular_loop_running = False
+
+    def update_popular(self):
+        for name, url in self.popular_urls:
+            resp = ping_url(url)
+
+            result = None
+            error = None
+            try:
+                result = resp["message"]
+            except KeyError:
+                error = resp["error"]
+
+            if error:
+                to_add = "An error occured"
+                print(error)
+            else:
+                status = result["status"]
+                reason = result["reason"]
+                ping = round(result["ping"], 3)
+
+                is_working = "Working smoothly!" if status <= 200 else "Something's wrong"
+                to_add = f"[{is_working}]\n\nStatus: {status}\nReason: {reason}\nPing: {ping}"
+
+            match name:
+                case "instagram":
+                    self.instagram_card_label_text.set(to_add)
+                case "whatsapp":
+                    self.whatsapp_card_label_text.set(to_add)
+                case "facebook":
+                    self.facebook_card_label_text.set(to_add)
+                case "twitter":
+                    self.twitter_card_label_text.set(to_add)
+
+    def update_popular_loop(self):
+        while True:
+            if not self.is_popular_loop_running:
+                return
+
+            time.sleep(POPULAR_POLL_INTERVAL) # sleep for a certain amount of seconds before checking again
+            self.update_popular()
 
     def on_go_click(self):
         """Handles on click event for go button"""
@@ -58,7 +115,12 @@ class PeakWindow(Tk):
         reason = result["reason"]
         ping = round(result["ping"], 3)
 
-        to_show = f"Status: {status}\nReason: {reason}\nPing: {ping}"
+        #to_show = f"Status: {status}\nReason: {reason}\nPing: {ping}"
+        to_show = ""
+        to_show += " Status    Ping   Reason  "
+        to_show += "\n ──────────────────────── "
+        to_show += f"\n     {status}     {ping}     {reason}       "
+
         self.result_text.set(to_show)
 
     def add_buttons(self):
@@ -77,19 +139,19 @@ class PeakWindow(Tk):
             x=20,
             y=238,
             width=41,
-            height=34
+            height=33.1
         )
         
         # Add user button
         self.button_user_image = PhotoImage(file=self.asset_man.get_path(AssetType.BUTTON_USER))
-        self.button_home = Button(
+        self.button_user = Button(
             image=self.button_user_image,
             borderwidth=0,
             highlightthickness=0,
             command=lambda: print("user button click!"),
             relief="flat"
         )
-        self.button_home.place(
+        self.button_user.place(
             x=17,
             y=302,
             width=47,
@@ -111,7 +173,64 @@ class PeakWindow(Tk):
             width=43,
             height=48
         )
-        
+    
+    def add_status_labels(self):
+        # Instagram
+        self.instagram_card_label_text = StringVar()
+        self.instagram_card_label = Label(
+            textvariable=self.instagram_card_label_text,
+            bg="white",
+            fg="black"
+        )
+
+        self.instagram_card_label.place(
+        	x=137,
+            y=545,
+        )
+        self.instagram_card_label.lift()
+
+        # Whatsapp
+        self.whatsapp_card_label_text = StringVar()
+        self.whatsapp_card_label = Label(
+            textvariable=self.whatsapp_card_label_text,
+            bg="white",
+            fg="black"
+        )
+
+        self.whatsapp_card_label.place(
+            x=377,
+            y=545
+        )
+        self.whatsapp_card_label.lift()
+
+        # Facebook
+        self.facebook_card_label_text = StringVar()
+        self.facebook_card_label = Label(
+            textvariable=self.facebook_card_label_text,
+            bg="white",
+            fg="black"
+        )
+
+        self.facebook_card_label.place(
+            x=577,
+            y=545
+        )
+        self.facebook_card_label.lift()
+
+        # Twitter
+        self.twitter_card_label_text = StringVar()
+        self.twitter_card_label = Label(
+            textvariable=self.twitter_card_label_text,
+            bg="white",
+            fg="black"
+        )
+
+        self.twitter_card_label.place(
+            x=800,
+            y=545
+        )
+        self.twitter_card_label.lift()
+
     def add_status_cards(self):
         # Draw instagram card
         self.instagram_card_bg = PhotoImage(file=self.asset_man.get_path(AssetType.INSTAGRAM_CARD))
@@ -128,7 +247,7 @@ class PeakWindow(Tk):
             width=185,
             height=175
         )
-        
+                
         # Draw whatsapp card
         self.whatsapp_card_bg = PhotoImage(file=self.asset_man.get_path(AssetType.WHATSAPP_CARD))
         self.whatsapp_card_button = Button(
@@ -142,7 +261,7 @@ class PeakWindow(Tk):
         	x=346,
             y=477,
             width=190,
-            height=170
+            height=165
         )
         
         # Draw facebook card
@@ -176,6 +295,8 @@ class PeakWindow(Tk):
             width=197,
             height=167
         )
+
+        self.add_status_labels()
     
     def add_entry(self):
         # Draw text field entry
@@ -188,12 +309,14 @@ class PeakWindow(Tk):
 
         # Add entry
         self.entry_text = StringVar()
-        self.entry_text.set("saharaa.in") # keep default
+        self.entry_text.set("https://saharaa.in") # keep default
         self.entry = Entry(
             bd=0,
             bg=ENTRY_BG_COLOR,
             highlightthickness=0,
-            textvariable=self.entry_text
+            textvariable=self.entry_text,
+            fg="white",
+            font=Font(size=14)
         )
         self.entry.place(
             x=238,
@@ -260,7 +383,16 @@ class PeakWindow(Tk):
             358,
             image=self.bg_image
         )
-        
+    
+    def after_widgets(self):
+        """Runs after UI widgets are laid out successfully"""
+
+        # Set cards text to loading at start
+        self.instagram_card_label_text.set("\n    Hold on. Calculating...")
+        self.whatsapp_card_label_text.set("\nHold on. Calculating...")
+        self.facebook_card_label_text.set("\nHold on. Calculating...")
+        self.twitter_card_label_text.set("\nHold on. Calculating...")
+
     def widgets(self):
         """Add all the widgets here"""
 
@@ -278,5 +410,9 @@ class PeakWindow(Tk):
         self.configure(bg=BACKGROUND_COLOR)
 
     def run(self):
+        self.setup()
         self.widgets()
+
+        self.after(10, self.after_widgets)
+
         self.mainloop()
