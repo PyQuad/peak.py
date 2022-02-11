@@ -160,7 +160,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] The project idea
 - [x] Structure content
 - [x] Build Main Code And API
-- [x] Add Graph And Logging Support
+- [ ] Add Graph And Logging Support
 - [ ] Multi-language Support
     - [ ] Hindi
     - [ ] Mandarin Chinese
