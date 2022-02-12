@@ -39,12 +39,14 @@
 
 
 
+
 <div align="center">
+  <div>
   <a href="https://github.com/PyQuad/peak.py">
     <img src="https://raw.githubusercontent.com/PyQuad/peak.py/main/assets/peakuiexample.jpeg" alt="Logo">
-  </a> 
+  </a>
+  </div>
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
