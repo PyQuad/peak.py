@@ -31,13 +31,10 @@
 </div>
 
 <div align="center">
-  <a href="https://peakpy.herokuapp.com">
+  <a href="https://peakpy.herokuapp.com"></a>
     <img src="https://github.com/PyQuad/peak.py/blob/main/assets/bt2.png" width="211", height="77" alt="API 1">
-  </a> 
-
-  <a href="https://pyquad-peak-api.herokuapp.com">
+  <a href="https://pyquad-peak-api.herokuapp.com"></a>
     <img src="https://raw.githubusercontent.com/PyQuad/peak.py/main/assets/bt4.png" alt="API 2">
-  </a> 
 </div>
 
 
