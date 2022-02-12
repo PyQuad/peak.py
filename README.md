@@ -19,7 +19,7 @@
     <a href="https://github.com/PyQuad/peak.py"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/PyQuad/peak.py">Download</a>
+    <a href="https://pyquad.github.io/peak.py/">Download</a>
     ·
     <a href="https://github.com/PyQuad/peak.py">Report Bug</a>
     ·
