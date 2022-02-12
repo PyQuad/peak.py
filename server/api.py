@@ -3,7 +3,7 @@ import logging
 
 # Imported Sanic, Asynchronous web frameworks
 import aiohttp
-from sanic import Sanic, json
+from sanic import Sanic, json, response
 
 # Imported AIOHttp, Asynchronous HTTP Client
 from aiohttp import ClientSession
@@ -52,8 +52,8 @@ def finish(app, loop):
 # Main/Home Path
 @app.get("/")
 async def index(request):
-    return json({"message": "Peak API says hello!"})
-
+    #return json({"message": "Peak API says hello!"})
+    return response.redirect('https://pyquad.github.io/peak.py/')
 
 # Created /ping path to get url
 @app.get("/ping")

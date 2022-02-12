@@ -118,9 +118,9 @@ class PeakWindow(Tk):
 
         #to_show = f"Status: {status}\nReason: {reason}\nPing: {ping}"
         to_show = ""
-        to_show += " Status    Ping   Reason  "
-        to_show += "\n ──────────────────────── "
-        to_show += f"\n     {status}     {ping}     {reason}       "
+        to_show += " Status               Ping                Reason  "
+        to_show += "\n ─────────────────────────────────────────────── "
+        to_show += f"\n             {status}                 {ping}                {reason}       "
 
         self.result_text.set(to_show)
 
